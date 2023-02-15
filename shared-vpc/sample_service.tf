@@ -47,7 +47,7 @@ resource "google_compute_subnetwork_iam_member" "subnet_iam_assign" {
   project    = var.host_project_id
   region     = google_compute_subnetwork.subnets[each.value[0]].region
   subnetwork = google_compute_subnetwork.subnets[each.value[0]].name
-  role       = "roles/viewer"
+  role       = "roles/compute.networkUser"
   member     = each.value[1]
 }
 
