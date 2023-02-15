@@ -8,13 +8,13 @@ terraform {
   }
 }
 
-variable "project_id" {
+variable "host_project_id" {
   type = string
 }
 
 provider "google" {
   credentials = file("service-account.json")
-  project = "${var.project_id}"
+  project = "${var.host_project_id}"
   region  = "us-central1"
   zone    = "us-central1-c"
 }
