@@ -14,10 +14,10 @@
   2. sample_service2.tf を dev, stg, prd にシンボリックリンクして、 dev, stg, prd から使えるようにする
   3. `cd dev/` して、 dev 環境で問題ないか plan したり apply したりする (CI/CD するなら、ここを自動化してもいいかもですね)
   4. 問題なければ prd で `terraform apply`
-  5. 環境引き渡してFIN
+  5. 環境引き渡して FIN
 
 ## appendix
 
 - public repository に置く都合で variables 使ってますが、locals がんがん使って各々のプロジェクトに最適な形で運用してください
-- 払い出した subnet 同士の通信を制御するためには別途 [FW ルール](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall) を作成する必要があります.
+- 払い出した subnet 同士の通信を制御するためには別途 [FW ルール](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall) を作成する必要があります
 - Internal Load Balancer を使用する場合は、別途 [Proxy 専用サブネット](https://cloud.google.com/load-balancing/docs/l7-internal/proxy-only-subnets?hl=ja) を作成する必要があります
