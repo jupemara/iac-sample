@@ -17,17 +17,11 @@ resource "google_project_service" "sample_service_project_001" {
   ])
   project = "${local.env}-${local.service_project_id_suffix}"
   service = each.value
-  depends_on = [
-    google_project.sample_service_project_001
-  ]
 }
 
 resource "google_compute_shared_vpc_service_project" "sample_service_project_001" {
   host_project    = var.host_project_id
   service_project = google_project.sample_service_project_001.name
-  depends_on = [
-    google_project.sample_service_project_001
-  ]
 }
 
 resource "google_compute_subnetwork" "subnets" {
@@ -53,7 +47,7 @@ resource "google_compute_subnetwork_iam_member" "subnet_iam_assign" {
 
 resource "google_vpc_access_connector" "vpc_serverless_access_connector" {
   name          = "vpc-serverless-connector"
-  region        = local.region
-  ip_cidr_range = local.vpc_serverless_access_connector_cidr
+  region        = local.vpc_serverless_access_connector.region
+  ip_cidr_range = local.vpc_serverless_access_connector.cidr
   network       = var.shared_vpc_name
 }

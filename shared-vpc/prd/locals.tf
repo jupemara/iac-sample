@@ -5,5 +5,8 @@ locals {
       primary_cidr = "10.0.0.0/20"
     region = "asia-northeast1" }
   }
-  vpc_serverless_access_connector_cidr = "10.255.10.0/28"
+  vpc_serverless_access_connector {
+    _cidr  = "10.255.10.0/28"
+    region = "asia-northeast1"
+  }
 }

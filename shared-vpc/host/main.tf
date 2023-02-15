@@ -12,9 +12,6 @@ resource "google_project_service" "host_project_services" {
   ])
   project = google_project.host_project.project_id
   service = each.value
-  depends_on = [
-    google_project.host_project,
-  ]
 }
 
 resource "google_compute_network" "shared_vpc" {
@@ -22,10 +19,6 @@ resource "google_compute_network" "shared_vpc" {
   name                    = var.shared_vpc_name
   auto_create_subnetworks = false
   routing_mode            = "GLOBAL"
-  depends_on = [
-    google_project.host_project,
-    google_project_service.host_project_services,
-  ]
 }
 
 resource "google_compute_shared_vpc_host_project" "host_project" {
