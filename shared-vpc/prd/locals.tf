@@ -7,7 +7,7 @@ locals {
     }
   }
   vpc_serverless_access_connector {
-    _cidr  = "10.255.10.0/28"
+    cidr  = "10.255.10.0/28"
     region = "asia-northeast1"
   }
 }
