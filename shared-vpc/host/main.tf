@@ -14,9 +14,14 @@ resource "google_project_service" "host_project_services" {
   service = each.value
 }
 
-resource "google_compute_network" "shared_vpc" {
+resource "google_compute_network" "shared_vpcs" {
+  for_each = toset([
+    "dev",
+    "stg",
+    "prd"
+  ])
   project                 = google_project.host_project.project_id
-  name                    = var.shared_vpc_name
+  name                    = "${each.value}-${var.shared_vpc_name}"
   auto_create_subnetworks = false
   routing_mode            = "GLOBAL"
 }
