@@ -28,7 +28,7 @@ resource "google_compute_subnetwork" "subnets" {
   for_each                 = local.subnets
   name                     = "${each.key}-${each.value.region}"
   region                   = each.value.region
-  network                  = var.shared_vpc_name
+  network       = "${local.env}-${var.shared_vpc_name}"
   ip_cidr_range            = each.value.primary_cidr
   private_ip_google_access = true
 }
@@ -49,5 +49,5 @@ resource "google_vpc_access_connector" "vpc_serverless_access_connector" {
   name          = "vpc-serverless-connector"
   region        = local.vpc_serverless_access_connector.region
   ip_cidr_range = local.vpc_serverless_access_connector.cidr
-  network       = var.shared_vpc_name
+  network       = "${local.env}-${var.shared_vpc_name}"
 }
