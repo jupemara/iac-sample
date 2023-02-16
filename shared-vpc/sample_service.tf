@@ -28,7 +28,7 @@ resource "google_compute_subnetwork" "subnets" {
   for_each                 = local.subnets
   name                     = "${each.key}-${each.value.region}"
   region                   = each.value.region
-  network       = "${local.env}-${var.shared_vpc_name}"
+  network                  = "${local.env}-${var.shared_vpc_name}"
   ip_cidr_range            = each.value.primary_cidr
   private_ip_google_access = true
 }
